@@ -5,19 +5,94 @@ body {
     background-color: #f8f8f8;
 }
 
+/** HEADER **/
+
 header {
     width: 100%;
     padding: 15px 40px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    box-sizing: border-box;
     background-color: gainsboro;
     border: 1px solid grey;
 }
 
+/** MAIN **/
+
+main {
+    width: 100%;
+    height: 600px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#playlist-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    gap: 145px;
+    row-gap: 50px;
+}
+
+.playlist-cards {
+    width: 200px;
+    height: 240px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.playlist-img {
+    width: 100%;
+    height: 140px;
+    flex-shrink: 0;
+}
+
+.playlist-name {
+    width: 100%;
+    height: 20px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.creator-name {
+    width: 100%;
+    height: 15px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.like-container {
+    width: 100%;
+    height: 20px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+/** FOOTER **/
+
 footer {
     width: 100%;
     height: 50px;
+    box-sizing: border-box;
     background-color: gainsboro;
     border: 1px solid grey;
 }
