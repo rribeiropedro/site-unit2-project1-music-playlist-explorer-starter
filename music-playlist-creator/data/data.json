@@ -1,0 +1,35 @@
+[
+  {
+    "playlistID": "pl_001",
+    "playlist_name": "Morning Vibes",
+    "playlist_author": "Alice Smith",
+    "playlist_art": "../assets/img/playlist.png",
+    "songs": [
+      "song_101",
+      "song_102",
+      "song_103"
+    ]
+  },
+  {
+    "playlistID": "pl_002",
+    "playlist_name": "Workout Hits",
+    "playlist_author": "Bob Johnson",
+    "playlist_art": "../assets/img/playlist.png",
+    "songs": [
+      "song_201",
+      "song_202",
+      "song_203",
+      "song_204"
+    ]
+  },
+  {
+    "playlistID": "pl_003",
+    "playlist_name": "Chill Evenings",
+    "playlist_author": "Carol Lee",
+    "playlist_art": "../assets/img/playlist.png",
+    "songs": [
+      "song_301",
+      "song_302"
+    ]
+  }
+]
