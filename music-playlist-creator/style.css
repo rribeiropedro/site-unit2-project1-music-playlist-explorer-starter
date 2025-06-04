@@ -129,11 +129,40 @@ footer {
     border-radius: 25px;
 }
 
-.playlist-info {
+.playlist-modal-info {
     width: 100%;
     height: 160px;
     box-sizing: border-box;
+    display: flex;
     border: 1px solid red;
+}
+
+.playlist-modal-img {
+    width: 30%;
+    height: 100%;
+}
+
+.playlist-modal-text {
+    width: 70%;
+    height: 100%;
+    border: 1px solid green;
+}
+
+.playlist-modal-title {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: 1px solid orange;
+}
+
+.playlist-modal-creator {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .playlist-song {
