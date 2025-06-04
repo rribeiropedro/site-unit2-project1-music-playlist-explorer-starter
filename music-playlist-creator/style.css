@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
@@ -19,7 +19,8 @@ header {
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
-    background-color: gainsboro;
+    color: whitesmoke;
+    background-color: #861F41;
     border: 1px solid grey;
 }
 
@@ -27,7 +28,6 @@ header {
 
 main {
     width: 100%;
-    height: 650px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -36,15 +36,32 @@ main {
 
 #playlist-list {
     display: grid;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 40px;
+    column-gap: 80px;
     row-gap: 40px;
-    column-gap: 100px;
+}
+@media (max-width: 1300px) {
+    #playlist-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    #playlist-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    #playlist-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .playlist-cards {
-    width: 180px;
-    height: 260px;
+    width: 240px;
+    height: 360px;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -52,6 +69,7 @@ main {
     background-color: #ffffff;
     border: 1px solid grey;
     border-radius: 10px;
+    box-shadow: 6px 3px 3px #f1ecec;
     transition: transform 0.3s ease;
 }
 
@@ -61,7 +79,7 @@ main {
 
 .playlist-img {
     width: 100%;
-    height: 160px;
+    height: 200px;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -102,14 +120,26 @@ footer {
     width: 100%;
     height: 50px;
     box-sizing: border-box;
-    background-color: gainsboro;
+    background-color: #861F41;
     border: 1px solid grey;
 }
 
 /** MODAL **/
 
+.close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+}
+.close:hover,
+.close:focus {
+   color: black;
+   text-decoration: none;
+   cursor: pointer;
+}
+
 .modal-overlay {
-    display: hidden;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -125,7 +155,7 @@ footer {
 
 .modal-content {
     width: 900px;
-    height: 500px;
+    height: 600px;
     padding: 30px 100px;
     display: flex;
     flex-direction: column;
@@ -185,6 +215,7 @@ footer {
 .playlist-song-img {
     height: 100%;
     width: 15%;
+    border-right: 1px solid gray;
 }
 
 .playlist-song-info {
