@@ -5,6 +5,11 @@ body {
     background-color: #f8f8f8;
 }
 
+h1, h2, h3, h4, p {
+    padding: 0;
+    margin: 0;
+}
+
 /** HEADER **/
 
 header {
@@ -22,7 +27,7 @@ header {
 
 main {
     width: 100%;
-    height: 600px;
+    height: 650px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -30,30 +35,34 @@ main {
 }
 
 #playlist-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    gap: 145px;
-    row-gap: 50px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);;
+    row-gap: 40px;
+    column-gap: 100px;
 }
 
 .playlist-cards {
-    width: 200px;
-    height: 240px;
+    width: 180px;
+    height: 260px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     border: 1px solid grey;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.playlist-cards:hover {
+    transform: scale(1.05);
 }
 
 .playlist-img {
     width: 100%;
-    height: 140px;
+    height: 160px;
+    object-fit: cover;
     flex-shrink: 0;
 }
 
@@ -100,7 +109,7 @@ footer {
 /** MODAL **/
 
 .modal-overlay {
-    /* display: hidden; */
+    display: hidden;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -134,7 +143,6 @@ footer {
     height: 160px;
     box-sizing: border-box;
     display: flex;
-    border: 1px solid red;
 }
 
 .playlist-modal-img {
@@ -145,21 +153,22 @@ footer {
 .playlist-modal-text {
     width: 70%;
     height: 100%;
-    border: 1px solid green;
 }
 
 .playlist-modal-title {
     width: 100%;
     height: 40%;
+    padding: 2px 15px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    border: 1px solid orange;
+    box-sizing: border-box;
 }
 
 .playlist-modal-creator {
     width: 100%;
     height: 70%;
+    padding: 2px 15px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -168,5 +177,31 @@ footer {
 .playlist-song {
     width: 100%;
     height: 75px;
-    border: 1px solid blue;
+    display: flex;
+    background-color: #f1ecec;
+    border: 1px solid gray;
+}
+
+.playlist-song-img {
+    height: 100%;
+    width: 15%;
+}
+
+.playlist-song-info {
+    height: 100%;
+    width: 75%;
+    padding: 2px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.playlist-song-duration {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
