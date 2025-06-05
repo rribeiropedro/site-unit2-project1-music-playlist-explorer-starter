@@ -14,14 +14,29 @@ h1, h2, h3, h4, p {
 
 header {
     width: 100%;
-    padding: 15px 40px;
+    padding: 20px 40px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     color: whitesmoke;
     background-color: #1772c1;
     border: 1px solid grey;
+}
+
+.navigation {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 20px;
 }
 
 /** MAIN **/
@@ -251,6 +266,67 @@ footer {
 }
 
 .playlist-song-duration {
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/** Featured **/
+
+#featured-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px;
+}
+
+.featured-playlist {
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.featured-list {
+    margin-left: 50px;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 20px;
+}
+
+.featured-song {
+    height: 80px;
+    display: flex;
+}
+
+.featured-song-img {
+    height: 100%;
+    width: 80px;
+    object-fit: cover;
+}
+
+.featured-song-info {
+    height: 100%;
+    width: 75%;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.featured-song-duration {
     height: 100%;
     width: 15%;
     display: flex;

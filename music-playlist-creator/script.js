@@ -2,6 +2,7 @@ const modal = document.getElementsByClassName("modal-overlay")[0];
 const modalContent = document.getElementsByClassName("modal-content")[0];
 const playlistList = document.getElementById("playlist-list");
 const cards = document.querySelectorAll(".playlist-cards");
+const featured = document.getElementById("featured-container")
 let span;
 
 let liked = false;
@@ -71,6 +72,45 @@ function loadModal (card) {
     span = document.getElementsByClassName("close")[0];
 }
 
+function createFeaturedSongs (randomPlaylist) {
+    let featuredList = document.createElement('div');
+    featuredList.className = "featured-list";
+    randomPlaylist.songs.forEach(song => {
+        let featuredSong = document.createElement('div');
+        featuredSong.className = "featured-song";
+        featuredSong.innerHTML = `
+            <img class="featured-song-img" src=${song.song_img}>
+            <div class="featured-song-info">
+                <p style="font-size: 15px; margin-bottom: 2px;">${song.song_title}</p>
+                <p style="font-size: 11px;">${song.artist_name}</p>
+                <p style="font-size: 11px;">${song.album_name}</p>
+                <p style="font-size: 11px;">${song.duration}</p>
+            </div>
+        `
+        featuredList.append(featuredSong);
+    })
+
+    featured.appendChild(featuredList);
+}
+
+function createFeaturedPlaylist (randomPlaylist) {
+    let featuredPlaylist = document.createElement('div');
+    featuredPlaylist.className = "featured-playlist";
+    featuredPlaylist.innerHTML = `
+        <img class="featured-img" src=${randomPlaylist.playlist_art}>
+        <h1 style="margin-top: 10px; font-size: 25px">${randomPlaylist.playlist_name}</h1>
+    `
+    featured.appendChild(featuredPlaylist);
+    createFeaturedSongs(randomPlaylist);
+}
+
+async function loadFeatured () {
+    await fetchPlaylists();
+    let randomPlaylist = localPlaylists[Math.floor(
+        Math.random() * localPlaylists.length)]
+    createFeaturedPlaylist(randomPlaylist);
+}
+
 function createPlaylist (element) {
     let playlist = document.createElement('div');
     playlist.className = "playlist-cards";
@@ -91,18 +131,23 @@ function createPlaylist (element) {
     playlistList.appendChild(playlist);
 }
 
-function loadPlaylists () {
-    fetch("./data/data.json")
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(element => {
-                createPlaylist(element)
-                localPlaylists.push(element)
-            });
+async function fetchPlaylists () {
+    try {
+        const response = await fetch("./data/data.json")
+        const data = await response.json()
+        data.forEach(element => {
+            localPlaylists.push(element);
         })
-        .catch(error => {
-            console.log(error);
-        });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+async function loadPlaylists () {
+    await fetchPlaylists();
+    localPlaylists.forEach(item => {
+        createPlaylist(item)
+    })
 }
 
 function shuffleSongs () {
@@ -162,7 +207,11 @@ function handleClick (event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadPlaylists();
+    if (window.location.pathname === "/music-playlist-creator/index.html") {
+        loadPlaylists();
+    } else if (window.location.pathname === "/music-playlist-creator/featured.html") {
+        loadFeatured();
+    }
 
     document.addEventListener("click", (event) => {
         handleClick(event);
