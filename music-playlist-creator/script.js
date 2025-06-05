@@ -11,9 +11,9 @@ function createSong (song) {
     songDiv.className = "playlist-song";
 
     songDiv.innerHTML = `
-        <img class="playlist-song-img" src="${song.song_img}">
+        <img class="playlist-song-img" src=${song.song_img}>
         <div class="playlist-song-info">
-            <p>${song.song_title}</p>
+            <p style="font-size: 20px">${song.song_title}</p>
             <p>${song.artist_name}</p>
             <p>${song.album_name}</p>
         </div>
@@ -35,6 +35,7 @@ function findSongsByName (playlistName) {
 
 function loadModal (card) {
     let image = card.querySelector(".playlist-img");
+    console.log(image)
     let playlistName = card.querySelector(".playlist-name h1");
     let creatorName = card.querySelector(".creator-name p");
 
@@ -43,13 +44,13 @@ function loadModal (card) {
     let playlistModalInfo = document.createElement('div');
     playlistModalInfo.className = "playlist-modal-info";
     playlistModalInfo.innerHTML = `
-        <img class="playlist-modal-img" src=${"./assets/img/playlist.png"}>
+        <img class="playlist-modal-img" src=${image.src}>
         <div class="playlist-modal-text">
             <div class="playlist-modal-title">
-                <h2>${playlistName.innerHTML}</h2>
+                <h2 style="font-size: 40px">${playlistName.innerHTML}</h2>
             </div>
             <div class="playlist-modal-creator">
-                <h3>${creatorName.innerHTML}</h3>
+                <h3 style="font-size: 25px">${creatorName.innerHTML}</h3>
             </div>
         </div>
         <span class="close">&times;</span>
@@ -70,12 +71,12 @@ function createPlaylist (element) {
     playlist.className = "playlist-cards";
 
     playlist.innerHTML = `
-        <img class="playlist-img" src=${"./assets/img/playlist.png"}>
+        <img class="playlist-img" src=${element.playlist_art}>
         <div class="playlist-name">
-            <h1>${element.playlist_name}</h1>
+            <h1 style="font-size: 20px">${element.playlist_name}</h1>
         </div>
         <div class="creator-name">
-            <p>${element.playlist_author}</p>
+            <p style="font-size: 15px">${element.playlist_author}</p>
         </div>
         <div class="like-container">
             <p>Likes: 0</p>

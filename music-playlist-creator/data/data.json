@@ -3,7 +3,7 @@
     "playlistID": "pl_001",
     "playlist_name": "Morning Vibes",
     "playlist_author": "Alice Smith",
-    "playlist_art": "../assets/img/playlist.png",
+    "playlist_art": "./assets/img/basketball.jpg",
     "songs": [
       {
         "song_id": "song_101",
@@ -11,7 +11,7 @@
         "artist_name": "Avicii",
         "album_name": "True",
         "duration": "3:26",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_102",
@@ -19,7 +19,7 @@
         "artist_name": "Pharrell Williams",
         "album_name": "G I R L",
         "duration": "3:53",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_103",
@@ -27,7 +27,7 @@
         "artist_name": "Mark Ronson ft. Bruno Mars",
         "album_name": "Uptown Special",
         "duration": "4:38",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       }
     ]
   },
@@ -35,7 +35,7 @@
     "playlistID": "pl_002",
     "playlist_name": "Workout Hits",
     "playlist_author": "Bob Johnson",
-    "playlist_art": "../assets/img/song.png",
+    "playlist_art": "./assets/img/beach.jpg",
     "songs": [
       {
         "song_id": "song_201",
@@ -43,7 +43,7 @@
         "artist_name": "Survivor",
         "album_name": "Eye of the Tiger",
         "duration": "3:59",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_202",
@@ -51,7 +51,7 @@
         "artist_name": "Foster the People",
         "album_name": "Torches",
         "duration": "3:23",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_203",
@@ -59,7 +59,7 @@
         "artist_name": "Red Hot Chili Peppers",
         "album_name": "By the Way",
         "duration": "4:29",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_204",
@@ -67,7 +67,7 @@
         "artist_name": "Queen",
         "album_name": "News of the World",
         "duration": "2:28",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       }
     ]
   },
@@ -75,7 +75,7 @@
     "playlistID": "pl_003",
     "playlist_name": "Chill Evenings",
     "playlist_author": "Carol Lee",
-    "playlist_art": "../assets/img/song.png",
+    "playlist_art": "./assets/img/car.jpg",
     "songs": [
       {
         "song_id": "song_301",
@@ -83,7 +83,7 @@
         "artist_name": "Yiruma",
         "album_name": "First Love",
         "duration": "3:38",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
       },
       {
         "song_id": "song_302",
@@ -91,7 +91,167 @@
         "artist_name": "Claude Debussy",
         "album_name": "Suite Bergamasque",
         "duration": "5:53",
-        "song_img": "../assets/img/song.png"
+        "song_img": "./assets/img/song.png"
+      }
+    ]
+  },
+  {
+    "playlistID": "pl_004",
+    "playlist_name": "Morning Boost",
+    "playlist_author": "David Kim",
+    "playlist_art": "./assets/img/motorcycle.jpg",
+    "songs": [
+      {
+        "song_id": "song_401",
+        "song_title": "Walking on Sunshine",
+        "artist_name": "Katrina & The Waves",
+        "album_name": "Walking on Sunshine",
+        "duration": "3:35",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_402",
+        "song_title": "I Gotta Feeling",
+        "artist_name": "Black Eyed Peas",
+        "album_name": "The E.N.D.",
+        "duration": "4:49",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_403",
+        "song_title": "Can't Stop the Feeling!",
+        "artist_name": "Justin Timberlake",
+        "album_name": "Trolls: Original Motion Picture Soundtrack",
+        "duration": "3:56",
+        "song_img": "./assets/img/song.png"
+      }
+    ]
+  },
+  {
+    "playlistID": "pl_005",
+    "playlist_name": "Workout Motivation",
+    "playlist_author": "Emily Chen",
+    "playlist_art": "./assets/img/owl.jpg",
+    "songs": [
+      {
+        "song_id": "song_501",
+        "song_title": "Lose Yourself",
+        "artist_name": "Eminem",
+        "album_name": "8 Mile: Music from and Inspired by the Motion Picture",
+        "duration": "5:28",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_502",
+        "song_title": "Unstoppable",
+        "artist_name": "Sia",
+        "album_name": "This Is Acting",
+        "duration": "4:09",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_503",
+        "song_title": "We Will Rock You",
+        "artist_name": "Queen",
+        "album_name": "News of the World",
+        "duration": "2:28",
+        "song_img": "./assets/img/song.png"
+      }
+    ]
+  },
+  {
+    "playlistID": "pl_007",
+    "playlist_name": "Throwback Favorites",
+    "playlist_author": "Sarah Taylor",
+    "playlist_art": "./assets/img/picsum.jpg",
+    "songs": [
+      {
+        "song_id": "song_701",
+        "song_title": "Sweet Child O' Mine",
+        "artist_name": "Guns N' Roses",
+        "album_name": "Appetite for Destruction",
+        "duration": "5:56",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_702",
+        "song_title": "Smells Like Teen Spirit",
+        "artist_name": "Nirvana",
+        "album_name": "Nevermind",
+        "duration": "5:01",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_703",
+        "song_title": "Waterfalls",
+        "artist_name": "TLC",
+        "album_name": "CrazySexyCool",
+        "duration": "4:39",
+        "song_img": "./assets/img/song.png"
+      }
+    ]
+  },
+  {
+    "playlistID": "pl_008",
+    "playlist_name": "Pop Hits",
+    "playlist_author": "Michael Brown",
+    "playlist_art": "./assets/img/real_estate.jpg",
+    "songs": [
+      {
+        "song_id": "song_801",
+        "song_title": "Happy",
+        "artist_name": "Pharrell Williams",
+        "album_name": "G I R L",
+        "duration": "3:53",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_802",
+        "song_title": "Uptown Funk",
+        "artist_name": "Mark Ronson ft. Bruno Mars",
+        "album_name": "Uptown Special",
+        "duration": "4:38",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_803",
+        "song_title": "All About That Bass",
+        "artist_name": "Meghan Trainor",
+        "album_name": "Title",
+        "duration": "3:08",
+        "song_img": "./assets/img/song.png"
+      }
+    ]
+  },
+  {
+    "playlistID": "pl_009",
+    "playlist_name": "Classic Rock Anthems",
+    "playlist_author": "Emily White",
+    "playlist_art": "./assets/img/river.jpg",
+    "songs": [
+      {
+        "song_id": "song_901",
+        "song_title": "Hotel California",
+        "artist_name": "Eagles",
+        "album_name": "Hotel California",
+        "duration": "6:30",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_902",
+        "song_title": "Stairway to Heaven",
+        "artist_name": "Led Zeppelin",
+        "album_name": "Led Zeppelin IV",
+        "duration": "8:03",
+        "song_img": "./assets/img/song.png"
+      },
+      {
+        "song_id": "song_903",
+        "song_title": "Bohemian Rhapsody",
+        "artist_name": "Queen",
+        "album_name": "A Night at the Opera",
+        "duration": "5:55",
+        "song_img": "./assets/img/song.png"
       }
     ]
   }
