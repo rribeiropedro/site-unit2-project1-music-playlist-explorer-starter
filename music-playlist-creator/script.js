@@ -4,7 +4,8 @@ const playlistList = document.getElementById("playlist-list");
 const cards = document.querySelectorAll(".playlist-cards");
 let span;
 
-let localPlaylists = []
+let liked = false;
+let localPlaylists = [];
 
 function createSong (song) {
     let songDiv = document.createElement('div');
@@ -25,7 +26,6 @@ function createSong (song) {
 }
 
 function findSongsByName (playlistName) {
-    console.log(playlistName)
     for (const item of localPlaylists) {
         if (item.playlist_name === playlistName) {
             return item.songs;
@@ -33,9 +33,17 @@ function findSongsByName (playlistName) {
     }
 }
 
+function findPlaylistByName (playlistName) {
+    for (const item of localPlaylists) {
+        if (item.playlist_name === playlistName) {
+            console.log(item)
+            return item;
+        }
+    }
+}
+
 function loadModal (card) {
     let image = card.querySelector(".playlist-img");
-    console.log(image)
     let playlistName = card.querySelector(".playlist-name h1");
     let creatorName = card.querySelector(".creator-name p");
 
@@ -79,7 +87,8 @@ function createPlaylist (element) {
             <p style="font-size: 15px">${element.playlist_author}</p>
         </div>
         <div class="like-container">
-            <p>Likes: 0</p>
+            <button><i class="fa-regular fa-heart"></i></button>
+            <p>${element.likes}</p>
         </div>
     `
     playlistList.appendChild(playlist);
@@ -99,6 +108,24 @@ function loadPlaylists () {
         });
 }
 
+function updateLike (card) {
+    let playlistName = card.querySelector(".playlist-name h1");
+    let currPlaylist = findPlaylistByName(playlistName.innerHTML);
+    let likesHTML = card.querySelector(".like-container p")
+    let likeIcon = card.querySelector(".like-container button")
+    if (currPlaylist.liked == false) {
+        currPlaylist.likes++;
+        likesHTML.innerHTML = `${currPlaylist.likes}`
+        likeIcon.style = "color: red"
+        currPlaylist.liked = true;
+    } else {
+        currPlaylist.likes--;
+        likesHTML.innerHTML = `${currPlaylist.likes}`
+        likeIcon.style = "color: none"
+        currPlaylist.liked = false;
+    }
+}
+
 function handleClick (event) {
     if (span) {
         while (modalContent.firstChild) {
@@ -106,10 +133,14 @@ function handleClick (event) {
         }
         span = null;
         modal.style.display = "none";
-    }
-    const card = event.target.closest('.playlist-cards');
-    if (card) {
-        loadModal(card);
+    } else {
+        let card = event.target.closest('.playlist-cards');
+        if (event.target.closest(".like-container button")) {
+            updateLike(card);
+        }
+        else if (card) {
+            loadModal(card);
+        }
     }
 }
 

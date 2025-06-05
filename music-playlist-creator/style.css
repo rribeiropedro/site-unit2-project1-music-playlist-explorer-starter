@@ -116,6 +116,17 @@ main {
     margin-top: 40px;
 }
 
+.like-container button {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+}
+
+.like-container p {
+    margin-left: 5px;
+    margin-bottom: 2px;
+}
+
 /** FOOTER **/
 
 footer {

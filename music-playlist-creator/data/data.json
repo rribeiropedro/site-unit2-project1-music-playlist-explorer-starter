@@ -4,6 +4,8 @@
     "playlist_name": "Morning Vibes",
     "playlist_author": "Alice Smith",
     "playlist_art": "./assets/img/basketball.jpg",
+    "likes": 4,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_101",
@@ -36,6 +38,8 @@
     "playlist_name": "Workout Hits",
     "playlist_author": "Bob Johnson",
     "playlist_art": "./assets/img/beach.jpg",
+    "likes": 7,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_201",
@@ -76,6 +80,8 @@
     "playlist_name": "Chill Evenings",
     "playlist_author": "Carol Lee",
     "playlist_art": "./assets/img/car.jpg",
+    "likes": 3,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_301",
@@ -100,6 +106,8 @@
     "playlist_name": "Morning Boost",
     "playlist_author": "David Kim",
     "playlist_art": "./assets/img/motorcycle.jpg",
+    "likes": 1,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_401",
@@ -132,6 +140,8 @@
     "playlist_name": "Workout Motivation",
     "playlist_author": "Emily Chen",
     "playlist_art": "./assets/img/owl.jpg",
+    "likes": 4,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_501",
@@ -160,10 +170,12 @@
     ]
   },
   {
-    "playlistID": "pl_007",
+    "playlistID": "pl_006",
     "playlist_name": "Throwback Favorites",
     "playlist_author": "Sarah Taylor",
     "playlist_art": "./assets/img/picsum.jpg",
+    "likes": 14,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_701",
@@ -192,10 +204,12 @@
     ]
   },
   {
-    "playlistID": "pl_008",
+    "playlistID": "pl_007",
     "playlist_name": "Pop Hits",
     "playlist_author": "Michael Brown",
     "playlist_art": "./assets/img/real_estate.jpg",
+    "likes": 9,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_801",
@@ -224,10 +238,12 @@
     ]
   },
   {
-    "playlistID": "pl_009",
+    "playlistID": "pl_008",
     "playlist_name": "Classic Rock Anthems",
     "playlist_author": "Emily White",
     "playlist_art": "./assets/img/river.jpg",
+    "likes": 26,
+    "liked": false,
     "songs": [
       {
         "song_id": "song_901",
