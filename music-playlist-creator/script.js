@@ -2,7 +2,8 @@ const modal = document.getElementsByClassName("modal-overlay")[0];
 const modalContent = document.getElementsByClassName("modal-content")[0];
 const playlistList = document.getElementById("playlist-list");
 const cards = document.querySelectorAll(".playlist-cards");
-const featured = document.getElementById("featured-container")
+const featured = document.getElementById("featured-container");
+const select = document.getElementById('selector');
 let span;
 
 let liked = false;
@@ -98,7 +99,7 @@ function createFeaturedPlaylist (randomPlaylist) {
     featuredPlaylist.className = "featured-playlist";
     featuredPlaylist.innerHTML = `
         <img class="featured-img" src=${randomPlaylist.playlist_art}>
-        <h1 style="margin-top: 10px; font-size: 25px">${randomPlaylist.playlist_name}</h1>
+        <h1 style="margin-top: 10px; font-size: 40px">${randomPlaylist.playlist_name}</h1>
     `
     featured.appendChild(featuredPlaylist);
     createFeaturedSongs(randomPlaylist);
@@ -129,6 +130,24 @@ function createPlaylist (element) {
         </div>
     `
     playlistList.appendChild(playlist);
+}
+
+function sortPlaylist (sortType) {
+    if (sortType === "name") {
+        localPlaylists.sort((a, b) => a.playlist_name.localeCompare(b.playlist_name));
+        console.log(localPlaylists)
+    } else if (sortType === "likes") {
+        localPlaylists.sort((a, b) => b.likes - a.likes);
+    } else if (sortType === "date") {
+        localPlaylists.sort((a, b) => b.playlistID.substring(3, b.playlistID.length - 1) - 
+            a.playlistID.substring(3, a.playlistID.length));
+    }
+
+    playlistContainer = document.getElementById('playlist-list');
+    playlistContainer.innerHTML = '';
+    localPlaylists.forEach(item => {
+        createPlaylist(item);
+    })
 }
 
 async function fetchPlaylists () {
@@ -212,6 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (window.location.pathname === "/music-playlist-creator/featured.html") {
         loadFeatured();
     }
+
+    select.addEventListener('change', () => {
+        const selectedOption = select.options[select.selectedIndex];
+        sortPlaylist(selectedOption.value);
+    });
 
     document.addEventListener("click", (event) => {
         handleClick(event);

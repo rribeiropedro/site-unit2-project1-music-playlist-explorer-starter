@@ -32,11 +32,17 @@ header {
 
 .navigation a {
     text-decoration: none;
+    display: inline-block;
     color: inherit;
     outline: none;
     background: none;
     border: none;
     font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.navigation a:hover {
+    transform: scale(1.1);
 }
 
 /** MAIN **/
@@ -72,6 +78,34 @@ main {
     #playlist-list {
         grid-template-columns: repeat(1, 1fr);
     }
+}
+
+.sorting-container {
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-bottom: -15px;
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+}
+
+.sorting-container:hover {
+    transform: scale(1.05);
+}
+
+.sorting-container label {
+    margin-right: 5px;
+}
+
+.sorting-container option {
+    font-family: 'Lato', sans-serif;
 }
 
 .playlist-cards {
@@ -155,16 +189,18 @@ footer {
 /** MODAL **/
 
 .close {
-   color: #aaa;
-   float: right;
-   font-size: 28px;
-   font-weight: bold;
+    display: inline-block;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s;
 }
 .close:hover,
 .close:focus {
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transform: scale(1.05);
 }
 
 .modal-overlay {
@@ -219,6 +255,11 @@ footer {
     font-size: 20px;
     color: white;
     font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.shuffle-button:hover {
+    transform: scale(1.02);
 }
 
 .playlist-modal-title {
