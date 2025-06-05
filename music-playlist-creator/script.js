@@ -5,6 +5,7 @@ const cards = document.querySelectorAll(".playlist-cards");
 const featured = document.getElementById("featured-container");
 const searchBar = document.getElementById('search-bar');
 const select = document.getElementById('selector');
+const deleteButton = document.getElementsByClassName('delete-container')[0];
 let span;
 
 let deleting = false;
@@ -203,6 +204,16 @@ function shuffleSongs () {
     }
 }
 
+function deleteCard (card) {
+    let playlistName = card.querySelector(".playlist-name h1");
+    let currPlaylist = findPlaylistByName(playlistName.innerHTML);
+    let index = localPlaylists.filter(item => item.playlistID !== currPlaylist.playlistID);
+    localPlaylists.splice(index, 1);
+    playlistList.removeChild(card);
+    deleting = false; 
+    deleteButton.className = "delete-container"
+}
+
 function updateLike (card) {
     let playlistName = card.querySelector(".playlist-name h1");
     let currPlaylist = findPlaylistByName(playlistName.innerHTML);
@@ -232,7 +243,10 @@ function handleClick (event) {
         shuffleSongs();
     } else {
         let card = event.target.closest('.playlist-cards');
-        if (event.target.closest(".like-container button")) {
+        if (card && deleting === true) {
+            deleteCard(card);
+        }
+        else if (event.target.closest(".like-container button")) {
             updateLike(card);
         }
         else if (card) {
@@ -266,6 +280,16 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 sortPlaylist(select.value);
             }
+        }
+    })
+
+    deleteButton.addEventListener("click", () => {
+        if (deleting) {
+            deleting = false; 
+            deleteButton.className = "delete-container"
+        } else {
+            deleting = true;
+            deleteButton.className = "delete-container-active";
         }
     })
 })

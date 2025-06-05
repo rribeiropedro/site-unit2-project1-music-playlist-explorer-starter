@@ -134,6 +134,45 @@ main {
     font-family: 'Lato', sans-serif;
 }
 
+.delete-container {
+    padding: 10px 20px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+}
+
+.delete-container-active {
+    padding: 10px 20px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e94444;
+    color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+    transform: scale(1.1);
+}
+
+.delete-container label {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.delete-container-active label {
+    margin-right: 5px;
+}
+
 .playlist-cards {
     width: 240px;
     height: 360px;
