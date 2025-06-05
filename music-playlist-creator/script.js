@@ -6,6 +6,7 @@ let span;
 
 let liked = false;
 let localPlaylists = [];
+let modalPlaylist;
 
 function createSong (song) {
     let songDiv = document.createElement('div');
@@ -25,18 +26,9 @@ function createSong (song) {
     modalContent.appendChild(songDiv)
 }
 
-function findSongsByName (playlistName) {
-    for (const item of localPlaylists) {
-        if (item.playlist_name === playlistName) {
-            return item.songs;
-        }
-    }
-}
-
 function findPlaylistByName (playlistName) {
     for (const item of localPlaylists) {
         if (item.playlist_name === playlistName) {
-            console.log(item)
             return item;
         }
     }
@@ -47,7 +39,8 @@ function loadModal (card) {
     let playlistName = card.querySelector(".playlist-name h1");
     let creatorName = card.querySelector(".creator-name p");
 
-    let songs = findSongsByName(playlistName.innerHTML);
+    modalPlaylist = findPlaylistByName(playlistName.innerHTML);
+    let songs = modalPlaylist.songs;
 
     let playlistModalInfo = document.createElement('div');
     playlistModalInfo.className = "playlist-modal-info";
@@ -64,7 +57,11 @@ function loadModal (card) {
         <span class="close">&times;</span>
     `;
 
+    let shuffleButton = document.createElement('button');
+    shuffleButton.classList.add("shuffle-button");
+    shuffleButton.textContent = "Shuffle"
     modalContent.appendChild(playlistModalInfo);
+    modalContent.appendChild(shuffleButton);
 
     for (const item of songs) {
         createSong(item);
@@ -108,6 +105,24 @@ function loadPlaylists () {
         });
 }
 
+function shuffleSongs () {
+    let songs = [...modalPlaylist.songs];
+    for (let i = songs.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [songs[i], songs[j]] = [songs[j], songs[i]];
+    }
+
+    modalPlaylist.songs = songs;
+    
+    for (const item of modalPlaylist.songs) {
+        modalContent.removeChild(modalContent.lastChild);
+    }
+
+    for (const item of modalPlaylist.songs) {
+        createSong(item)
+    }
+}
+
 function updateLike (card) {
     let playlistName = card.querySelector(".playlist-name h1");
     let currPlaylist = findPlaylistByName(playlistName.innerHTML);
@@ -127,12 +142,14 @@ function updateLike (card) {
 }
 
 function handleClick (event) {
-    if (span) {
+    if (span && event.target.closest('.close')) {
         while (modalContent.firstChild) {
             modalContent.removeChild(modalContent.firstChild);
         }
         span = null;
         modal.style.display = "none";
+    } else if (event.target.closest('.shuffle-button')) {
+        shuffleSongs();
     } else {
         let card = event.target.closest('.playlist-cards');
         if (event.target.closest(".like-container button")) {

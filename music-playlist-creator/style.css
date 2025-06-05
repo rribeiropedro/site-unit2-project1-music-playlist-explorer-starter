@@ -196,6 +196,16 @@ footer {
     height: 100%;
 }
 
+.shuffle-button {
+    padding: 12px 60px;
+    background-color: rgb(53, 119, 233);
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+}
+
 .playlist-modal-title {
     width: 100%;
     height: 40%;
