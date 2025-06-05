@@ -5,31 +5,94 @@
     "playlist_author": "Alice Smith",
     "playlist_art": "../assets/img/playlist.png",
     "songs": [
-      "song_101",
-      "song_102",
-      "song_103"
+      {
+        "song_id": "song_101",
+        "song_title": "Wake Me Up",
+        "artist_name": "Avicii",
+        "album_name": "True",
+        "duration": "3:26",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_102",
+        "song_title": "Happy",
+        "artist_name": "Pharrell Williams",
+        "album_name": "G I R L",
+        "duration": "3:53",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_103",
+        "song_title": "Uptown Funk",
+        "artist_name": "Mark Ronson ft. Bruno Mars",
+        "album_name": "Uptown Special",
+        "duration": "4:38",
+        "song_img": "../assets/img/song.png"
+      }
     ]
   },
   {
     "playlistID": "pl_002",
     "playlist_name": "Workout Hits",
     "playlist_author": "Bob Johnson",
-    "playlist_art": "../assets/img/playlist.png",
+    "playlist_art": "../assets/img/song.png",
     "songs": [
-      "song_201",
-      "song_202",
-      "song_203",
-      "song_204"
+      {
+        "song_id": "song_201",
+        "song_title": "Eye of the Tiger",
+        "artist_name": "Survivor",
+        "album_name": "Eye of the Tiger",
+        "duration": "3:59",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_202",
+        "song_title": "Pumped Up Kicks",
+        "artist_name": "Foster the People",
+        "album_name": "Torches",
+        "duration": "3:23",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_203",
+        "song_title": "Can't Stop",
+        "artist_name": "Red Hot Chili Peppers",
+        "album_name": "By the Way",
+        "duration": "4:29",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_204",
+        "song_title": "We Will Rock You",
+        "artist_name": "Queen",
+        "album_name": "News of the World",
+        "duration": "2:28",
+        "song_img": "../assets/img/song.png"
+      }
     ]
   },
   {
     "playlistID": "pl_003",
     "playlist_name": "Chill Evenings",
     "playlist_author": "Carol Lee",
-    "playlist_art": "../assets/img/playlist.png",
+    "playlist_art": "../assets/img/song.png",
     "songs": [
-      "song_301",
-      "song_302"
+      {
+        "song_id": "song_301",
+        "song_title": "River Flows in You",
+        "artist_name": "Yiruma",
+        "album_name": "First Love",
+        "duration": "3:38",
+        "song_img": "../assets/img/song.png"
+      },
+      {
+        "song_id": "song_302",
+        "song_title": "Clair de Lune",
+        "artist_name": "Claude Debussy",
+        "album_name": "Suite Bergamasque",
+        "duration": "5:53",
+        "song_img": "../assets/img/song.png"
+      }
     ]
   }
 ]

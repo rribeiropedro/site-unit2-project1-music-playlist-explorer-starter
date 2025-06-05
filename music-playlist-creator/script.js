@@ -4,17 +4,33 @@ const playlistList = document.getElementById("playlist-list");
 const cards = document.querySelectorAll(".playlist-cards");
 let span;
 
+let localPlaylists = []
+
+function createSong (song) {
+    let songDiv = document.createElement('div');
+    songDiv.className = "playlist-song";
+
+    songDiv.innerHTML = `
+        <img class="playlist-song-img" src="${song.song_img}">
+        <div class="playlist-song-info">
+            <p>${song.song_title}</p>
+            <p>${song.artist_name}</p>
+            <p>${song.album_name}</p>
+        </div>
+        <div class="playlist-song-duration">
+            ${song.duration}
+        </div>
+    `;
+    modalContent.appendChild(songDiv)
+}
+
 function findSongsByName (playlistName) {
-    fetch("./data/data.json")
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(element => {
-                /**  */
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    console.log(playlistName)
+    for (const item of localPlaylists) {
+        if (item.playlist_name === playlistName) {
+            return item.songs;
+        }
+    }
 }
 
 function loadModal (card) {
@@ -22,12 +38,12 @@ function loadModal (card) {
     let playlistName = card.querySelector(".playlist-name h1");
     let creatorName = card.querySelector(".creator-name p");
 
-    const songs = findSongsByName(playlistName.innerHTML);
+    let songs = findSongsByName(playlistName.innerHTML);
 
     let playlistModalInfo = document.createElement('div');
     playlistModalInfo.className = "playlist-modal-info";
     playlistModalInfo.innerHTML = `
-        <img class="playlist-modal-img" src="${image.src}">
+        <img class="playlist-modal-img" src=${"./assets/img/playlist.png"}>
         <div class="playlist-modal-text">
             <div class="playlist-modal-title">
                 <h2>${playlistName.innerHTML}</h2>
@@ -40,6 +56,11 @@ function loadModal (card) {
     `;
 
     modalContent.appendChild(playlistModalInfo);
+
+    for (const item of songs) {
+        createSong(item);
+    }
+
     modal.style.display = "block";
     span = document.getElementsByClassName("close")[0];
 }
@@ -69,6 +90,7 @@ function loadPlaylists () {
         .then(data => {
             data.forEach(element => {
                 createPlaylist(element)
+                localPlaylists.push(element)
             });
         })
         .catch(error => {
