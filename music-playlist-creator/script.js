@@ -3,9 +3,11 @@ const modalContent = document.getElementsByClassName("modal-content")[0];
 const playlistList = document.getElementById("playlist-list");
 const cards = document.querySelectorAll(".playlist-cards");
 const featured = document.getElementById("featured-container");
+const searchBar = document.getElementById('search-bar');
 const select = document.getElementById('selector');
 let span;
 
+let deleting = false;
 let liked = false;
 let localPlaylists = [];
 let modalPlaylist;
@@ -114,6 +116,7 @@ async function loadFeatured () {
 
 function createPlaylist (element) {
     let playlist = document.createElement('div');
+    playlist.id = element.playlistID;
     playlist.className = "playlist-cards";
 
     playlist.innerHTML = `
@@ -138,15 +141,28 @@ function sortPlaylist (sortType) {
         console.log(localPlaylists)
     } else if (sortType === "likes") {
         localPlaylists.sort((a, b) => b.likes - a.likes);
-    } else if (sortType === "date") {
-        localPlaylists.sort((a, b) => b.playlistID.substring(3, b.playlistID.length - 1) - 
+    } else if (sortType === "name") {
+        localPlaylists.sort((a, b) => b.playlistID.substring(3, b.playlistID.length - 1) + 
             a.playlistID.substring(3, a.playlistID.length));
     }
 
+    console.log(sortType);
     playlistContainer = document.getElementById('playlist-list');
     playlistContainer.innerHTML = '';
     localPlaylists.forEach(item => {
         createPlaylist(item);
+    })
+}
+
+function filterBySearch () {
+    localPlaylists.forEach(item => {
+        for (let i = 0; i < searchBar.value.length; i++) {
+            if (item.playlist_name[i].toLowerCase() != searchBar.value[i].toLowerCase()) {
+                deletePlaylist = document.getElementById(item.playlistID);
+                playlistList.removeChild(deletePlaylist);
+                break;
+            }
+        }
     })
 }
 
@@ -239,5 +255,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("click", (event) => {
         handleClick(event);
+    })
+
+    searchBar.addEventListener("keyup", () => {
+        if (searchBar.value.length > 2) {
+            filterBySearch();
+        } else {
+            if (select == "") {
+                sortPlaylist("date");
+            } else {
+                sortPlaylist(select.value);
+            }
+        }
     })
 })

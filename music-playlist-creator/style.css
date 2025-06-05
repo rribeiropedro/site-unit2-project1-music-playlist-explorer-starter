@@ -80,9 +80,34 @@ main {
     }
 }
 
+.feature-container {
+    display: flex;
+}
+
+.search-container {
+    padding: 10px 20px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+}
+
+.search-container label {
+    margin-right: 5px;
+}
+
+.search-container:hover {
+    transform: scale(1.05);
+}
+
 .sorting-container {
     padding: 10px 20px;
-    background-color: #f2f2f2;
     height: 30px;
     margin-top: 20px;
     margin-left: 40px;
@@ -93,6 +118,7 @@ main {
     align-items: center;
     border-radius: 5px;
     box-shadow: 6px 6px 3px 0px #f1ecec;
+    background-color: #f2f2f2;
     transition: transform 0.3s;
 }
 
