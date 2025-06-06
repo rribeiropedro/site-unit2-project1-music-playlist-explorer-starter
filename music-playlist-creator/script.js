@@ -6,12 +6,18 @@ const featured = document.getElementById("featured-container");
 const searchBar = document.getElementById('search-bar');
 const select = document.getElementById('selector');
 const deleteButton = document.getElementsByClassName('delete-container')[0];
+const addButton = document.getElementsByClassName('add-container')[0];
+const addSongToForm = document.getElementById('song-form-plus');
+const submitPlaylistForm = document.getElementById('add-playlist-submit');
+const addModalClose = document.getElementById('form-modal-close');
+
 let span;
 
 let deleting = false;
 let liked = false;
 let localPlaylists = [];
 let modalPlaylist;
+let currSongId = 1;
 
 function createSong (song) {
     let songDiv = document.createElement('div');
@@ -167,6 +173,34 @@ function filterBySearch () {
     })
 }
 
+function addAnotherSongInput () {
+    let songFormList = document.createElement('div');
+    currSongId++;
+    songFormList.id = "song_" + String(currSongId);
+    songFormList.className = "song-form-list";
+    songFormList.innerHTML = `
+        <div class="song-form-group">
+            <label>Song Name</label>
+            <input type="text" id="song-name-input">
+        </div>
+        <div class="song-form-group">
+            <label>Song Artist</label>
+            <input type="text" id="song-name-input">
+        </div>
+        <div class="song-form-group">
+            <label>Song Album</label>
+            <input type="text" id="song-name-input">
+        </div>
+        <div class="song-form-group">
+            <label>Song Duration</label>
+            <input type="text" id="song-name-input">
+        </div>
+    `
+    let inputList = document.getElementsByClassName("input-list")[0];
+    let songFormInput = inputList.querySelector("#song-form-input");
+    songFormInput.appendChild(songFormList);
+}
+
 async function fetchPlaylists () {
     try {
         const response = await fetch("./data/data.json")
@@ -214,20 +248,69 @@ function deleteCard (card) {
     deleteButton.className = "delete-container"
 }
 
+function createPlaylistFromForm () {
+    let inputList = document.getElementsByClassName('input-list')[0];
+    let playlistName = inputList.querySelector("#playlist-name-input input").value;
+    let creatorName = inputList.querySelector("#playlist-creator-input input").value;
+    let songList = inputList.querySelector("#song-form-input");
+
+    let songsToAdd = []
+
+    for (let i = 1; i <= currSongId; i++) {
+        let currSong = songList.querySelector(`#song_${i}`);
+        let songName = currSong.querySelector(".song-form-group #song-name-input").value;
+        let songArtist = currSong.querySelector(".song-form-group #song-artist-input").value;
+        let songAlbum = currSong.querySelector(".song-form-group #song-album-input").value;
+        let songDuration = currSong.querySelector(".song-form-group #song-duration-input").value;
+
+        songsToAdd.push({
+            song_id: `song_${i}`,
+            song_title: songName,
+            artist_name: songArtist,
+            album_name: songAlbum,
+            duration: songDuration,
+            song_img: "./assets/img/song.png"
+        })
+    }
+
+    currSongId = 1;
+
+    localPlaylists.push({
+        playlistID: `${localPlaylists.length}`,
+        playlist_name: playlistName,
+        playlist_author: creatorName,
+        playlist_art: "./assets/img/playlist.png",
+        likes: 0,
+        liked: false,
+        songs: songsToAdd
+    })
+    
+    playlistList.innerHTML = ""
+    localPlaylists.forEach(item => {
+        createPlaylist(item);
+    })
+
+    let formModal = document.getElementById("form-modal");
+    formModal.style = "display: none"
+}
+
 function updateLike (card) {
     let playlistName = card.querySelector(".playlist-name h1");
     let currPlaylist = findPlaylistByName(playlistName.innerHTML);
     let likesHTML = card.querySelector(".like-container p")
-    let likeIcon = card.querySelector(".like-container button")
+    let likeButton = card.querySelector(".like-container button");
+    let likeIcon = card.querySelector(".like-container button i");
     if (currPlaylist.liked == false) {
         currPlaylist.likes++;
         likesHTML.innerHTML = `${currPlaylist.likes}`
-        likeIcon.style = "color: red"
+        likeIcon.classList = "fa-solid fa-heart"
+        likeButton.style = "color: red"
         currPlaylist.liked = true;
     } else {
         currPlaylist.likes--;
         likesHTML.innerHTML = `${currPlaylist.likes}`
-        likeIcon.style = "color: none"
+        likeIcon.classList = "fa-regular fa-heart"
+        likeButton.style = "color: none"
         currPlaylist.liked = false;
     }
 }
@@ -283,6 +366,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    addButton.addEventListener("click", () => {
+        let formModal = document.getElementById("form-modal");
+        formModal.style = "display: block"
+    })
+
+    addSongToForm.addEventListener("click", () => {
+        addAnotherSongInput();
+    })
+
     deleteButton.addEventListener("click", () => {
         if (deleting) {
             deleting = false; 
@@ -291,5 +383,27 @@ document.addEventListener("DOMContentLoaded", () => {
             deleting = true;
             deleteButton.className = "delete-container-active";
         }
+    })
+
+    addModalClose.addEventListener("click", () => {
+        let formModal = document.getElementById("form-modal");
+        let songFormInput = document.querySelector("#song-form-input");
+        while (songFormInput.children.length > 2) {
+            songFormInput.removeChild(songFormInput.lastChild);
+        }
+
+        document.getElementById('playlist-name').value = '';
+        document.getElementById('playlist-creator').value = '';
+        document.getElementById('song-name-input').value = '';
+        document.getElementById('song-artist-input').value = '';
+        document.getElementById('song-album-input').value = '';
+        document.getElementById('song-duration-input').value = '';
+        
+        formModal.style = "display: none";
+    })
+
+    submitPlaylistForm.addEventListener("click", (event) => {
+        event.preventDefault();
+        createPlaylistFromForm();
     })
 })

@@ -32,6 +32,10 @@
                 <option value="likes">Likes</option>
             </select>
         </div>
+        <div class="add-container">
+            <label>Add</label>
+            <i class="fa-solid fa-plus"></i>
+        </div>
         <div class="delete-container">
             <label>Delete:</label>
             <i class="fa-solid fa-trash"></i>
@@ -47,6 +51,48 @@
         <div class="modal-content">
             <!-- Modal Dynamically Loaded -->
         </div>
+    </div>
+
+    <div style="display: none;" id="form-modal" class="form-modal">
+        <form class="form-container">
+            <span id="form-modal-close" class="close">&times;</span>
+            <h1>Add Playlist Form</h1>
+            <div class="input-list">
+                <div id="playlist-name-input" class="form-input">
+                    <label>Playlist Name</label>
+                    <input required type="text" id="playlist-name">
+                </div>
+                <div id="playlist-creator-input" class="form-input">
+                    <label>Playlist Creator</label>
+                    <input required type="text" id="playlist-creator">
+                </div>
+                <div id="song-form-input" class="form-input">
+                    <div id="song-input-label">
+                        <label>Add Songs</label>
+                        <i id="song-form-plus" class="fa-solid fa-plus"></i>
+                    </div>
+                    <div id="song_1" class="song-form-list">
+                        <div class="song-form-group">
+                            <label>Song Name</label>
+                            <input required type="text" id="song-name-input">
+                        </div>
+                        <div class="song-form-group">
+                            <label>Song Artist</label>
+                            <input required type="text" id="song-artist-input">
+                        </div>
+                        <div class="song-form-group">
+                            <label>Song Album</label>
+                            <input required type="text" id="song-album-input">
+                        </div>
+                        <div class="song-form-group">
+                            <label>Song Duration</label>
+                            <input required type="text" id="song-duration-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input id="add-playlist-submit" type="submit" value="Submit">
+        </form>
     </div>
 
     <footer>
