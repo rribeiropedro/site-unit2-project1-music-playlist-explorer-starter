@@ -150,7 +150,6 @@ function createPlaylist (element) {
 }
 
 function sortPlaylist (sortType) {
-    console.log(sortType)
     if (sortType === "name") {
         localPlaylists.sort((a, b) => a.playlist_name.localeCompare(b.playlist_name));
     } else if (sortType === "likes") {
