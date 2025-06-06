@@ -150,13 +150,17 @@ function createPlaylist (element) {
 }
 
 function sortPlaylist (sortType) {
+    console.log(sortType)
     if (sortType === "name") {
         localPlaylists.sort((a, b) => a.playlist_name.localeCompare(b.playlist_name));
     } else if (sortType === "likes") {
         localPlaylists.sort((a, b) => b.likes - a.likes);
     } else if (sortType === "date") {
-        localPlaylists.sort((a, b) => b.playlistID.substring(3, b.playlistID.length - 1) + 
-            a.playlistID.substring(3, a.playlistID.length));
+        console.log('here')
+        localPlaylists.sort((a, b) => {
+            const getDate = id => parseInt(id.split('_')[1], 10);
+            return getDate(b.playlistID) - getDate(a.playlistID);
+        });
     }
 
     playlistContainer = document.getElementById('playlist-list');
@@ -367,9 +371,6 @@ function uploadChanges () {
         editPlaylist.playlist_author = creatorName;
     editPlaylist.songs.push(...songsToAdd);
 
-    // localPlaylists[index] = editPlaylist;
-    console.log(localPlaylists)
-
     playlistList.innerHTML = ""
     localPlaylists.forEach(item => {
         createPlaylist(item);
@@ -491,6 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     select.addEventListener('change', () => {
         const selectedOption = select.options[select.selectedIndex];
+        console.log(selectedOption.value)
         sortPlaylist(selectedOption.value);
     });
 
