@@ -10,13 +10,20 @@ const addButton = document.getElementsByClassName('add-container')[0];
 const addSongToForm = document.getElementById('song-form-plus');
 const submitPlaylistForm = document.getElementById('add-playlist-submit');
 const addModalClose = document.getElementById('form-modal-close');
+const editButton = document.getElementsByClassName('edit-container')[0];
+const editModal = document.getElementById('edit-modal');
+const editForm = document.getElementById("form-edit-playlist");
+
 
 let span;
-
+let editCloseButton;
+let songsAdded = 0;
 let deleting = false;
+let editing = false;
 let liked = false;
 let localPlaylists = [];
 let modalPlaylist;
+let editPlaylist;
 let currSongId = 1;
 
 function createSong (song) {
@@ -145,15 +152,13 @@ function createPlaylist (element) {
 function sortPlaylist (sortType) {
     if (sortType === "name") {
         localPlaylists.sort((a, b) => a.playlist_name.localeCompare(b.playlist_name));
-        console.log(localPlaylists)
     } else if (sortType === "likes") {
         localPlaylists.sort((a, b) => b.likes - a.likes);
-    } else if (sortType === "name") {
+    } else if (sortType === "date") {
         localPlaylists.sort((a, b) => b.playlistID.substring(3, b.playlistID.length - 1) + 
             a.playlistID.substring(3, a.playlistID.length));
     }
 
-    console.log(sortType);
     playlistContainer = document.getElementById('playlist-list');
     playlistContainer.innerHTML = '';
     localPlaylists.forEach(item => {
@@ -173,7 +178,7 @@ function filterBySearch () {
     })
 }
 
-function addAnotherSongInput () {
+function addAnotherSongInput (form) {
     let songFormList = document.createElement('div');
     currSongId++;
     songFormList.id = "song_" + String(currSongId);
@@ -185,20 +190,21 @@ function addAnotherSongInput () {
         </div>
         <div class="song-form-group">
             <label>Song Artist</label>
-            <input type="text" id="song-name-input">
+            <input type="text" id="song-artist-input">
         </div>
         <div class="song-form-group">
             <label>Song Album</label>
-            <input type="text" id="song-name-input">
+            <input type="text" id="song-album-input">
         </div>
         <div class="song-form-group">
             <label>Song Duration</label>
-            <input type="text" id="song-name-input">
+            <input type="text" id="song-duration-input">
         </div>
     `
-    let inputList = document.getElementsByClassName("input-list")[0];
-    let songFormInput = inputList.querySelector("#song-form-input");
-    songFormInput.appendChild(songFormList);
+    let inputList = document.querySelector(form);
+    console.log(inputList)
+    songsAdded++;
+    inputList.appendChild(songFormList)
 }
 
 async function fetchPlaylists () {
@@ -248,8 +254,134 @@ function deleteCard (card) {
     deleteButton.className = "delete-container"
 }
 
+function showEditModal (card) {
+    let playlistName = card.querySelector(".playlist-name h1");
+    let currPlaylist = findPlaylistByName(playlistName.innerHTML);
+    editPlaylist = findPlaylistByName(playlistName.innerHTML);
+
+    let songEditList = document.createElement("div");
+    songEditList.className = "form-input";
+    songEditList.id = "song-edit-input";
+    songEditList.innerHTML = `
+        <div id="song-input-label">
+            <label style="margin-right: 5px">Edit Songs</label>
+            <i id="edit-song-plus" class="fa-solid fa-plus"></i>
+        </div>
+    `;
+
+    currPlaylist.songs.forEach(song => {
+        let songDiv = document.createElement('div');
+        songDiv.className = "playlist-song";
+
+        songDiv.innerHTML = `
+            <img style="width: 15%" class="playlist-song-img" src=${song.song_img}>
+            <div class="playlist-song-info">
+                <p style="font-size: 20px">${song.song_title}</p>
+                <p>${song.artist_name}</p>
+                <p>${song.album_name}</p>
+            </div>
+            <div class="playlist-song-duration">
+                ${song.duration}
+            </div>
+            <div id="trash" style="display: flex; justify-content: center; align-items: center; margin-right: 20px">
+                <i class="fa-solid fa-trash"></i>
+            </div>
+        `;
+        currSongId++;
+        songEditList.appendChild(songDiv);
+    });
+
+    editForm.innerHTML = `
+        <span id="edit-modal-close" class="close">&times;</span>
+        <h1>Edit Playlist Form</h1>
+        <div id="edit-form-modal" class="input-list">
+            <div id="change-name-input" class="form-input">
+                <label>Change Name From: ${currPlaylist.playlist_name}</label>
+                <input type="text" id="playlist-name">
+            </div>
+            <div id="change-creator-input" class="form-input">
+                <label>Change Creator from: ${currPlaylist.playlist_author}</label>
+                <input type="text" id="playlist-creator">
+            </div>
+        </div>
+        <input id="edit-playlist-submit" type="submit" value="Submit">
+    `;
+
+    let inputList = editModal.querySelector('.input-list');
+    inputList.appendChild(songEditList);
+    document.body.appendChild(editModal);
+    editCloseButton = document.getElementById('edit-modal-close');
+    editModal.style = "display: block";
+}
+
+function removeEditSong (trashTarget) {
+    let removeSong = trashTarget.parentElement.parentElement;
+    let songName = trashTarget.parentElement.parentElement.querySelectorAll(".playlist-song-info p")[0].innerHTML;
+    console.log(editPlaylist.songs.length);
+    for (let i = 0; i < editPlaylist.songs.length; i++) {
+        if (editPlaylist.songs[i].song_title == songName) {
+            editPlaylist.songs.splice(i, 1);
+            break;
+        }
+    }
+    removeSong.remove();
+}
+
+function uploadChanges () {
+    let inputList = document.getElementById('edit-form-modal');
+    let playlistName = inputList.querySelector("#change-name-input input").value;
+    let creatorName = inputList.querySelector("#change-creator-input input").value;
+    let editFormModal = document.getElementById("edit-form-modal")
+
+    let songsToAdd = []
+
+    for (let i = 0; i < songsAdded; i++) {
+        let currSong = editFormModal.lastChild;
+        console.log(currSong)
+        let songName = currSong.querySelector(".song-form-group #song-name-input").value;
+        let songArtist = currSong.querySelector(".song-form-group #song-artist-input").value;
+        let songAlbum = currSong.querySelector(".song-form-group #song-album-input").value;
+        let songDuration = currSong.querySelector(".song-form-group #song-duration-input").value;
+
+        songsToAdd.push({
+            song_id: `song_${i}`,
+            song_title: songName,
+            artist_name: songArtist,
+            album_name: songAlbum,
+            duration: songDuration,
+            song_img: "./assets/img/song.png"
+        })
+
+        editFormModal.removeChild(editFormModal.lastChild)
+    }
+
+    currSongId = 1;
+    songsAdded = 0;
+
+    let playlistToBeReplaced = findPlaylistByName(editPlaylist.playlist_name);
+    let index = localPlaylists.filter(item => item.playlistID === playlistToBeReplaced.playlistID);
+
+    if (playlistName)
+        editPlaylist.playlist_name = playlistName;
+    if (creatorName)
+        editPlaylist.playlist_author = creatorName;
+    editPlaylist.songs.push(...songsToAdd);
+
+    // localPlaylists[index] = editPlaylist;
+    console.log(localPlaylists)
+
+    playlistList.innerHTML = ""
+    localPlaylists.forEach(item => {
+        createPlaylist(item);
+    })
+
+    let formModal = document.getElementById("edit-modal");
+    formModal.style = "display: none"
+    
+}
+
 function createPlaylistFromForm () {
-    let inputList = document.getElementsByClassName('input-list')[0];
+    let inputList = document.getElementById('add-form-modal');
     let playlistName = inputList.querySelector("#playlist-name-input input").value;
     let creatorName = inputList.querySelector("#playlist-creator-input input").value;
     let songList = inputList.querySelector("#song-form-input");
@@ -324,10 +456,21 @@ function handleClick (event) {
         modal.style.display = "none";
     } else if (event.target.closest('.shuffle-button')) {
         shuffleSongs();
+    } else if (editing && event.target.closest('#edit-modal-close')) {
+        document.getElementById('edit-modal').remove();
+        editButton.className = "edit-container";
+        currSongId = 1;
+        editing = false;
+    } else if (editing && event.target.closest('#trash')) {
+        removeEditSong(event.target);
+    } else if (editing && event.target.closest('#edit-song-plus')) {
+        addAnotherSongInput("#edit-form-modal");
     } else {
         let card = event.target.closest('.playlist-cards');
         if (card && deleting === true) {
             deleteCard(card);
+        } else if (card && editing == true) {
+            showEditModal(card);
         }
         else if (event.target.closest(".like-container button")) {
             updateLike(card);
@@ -339,6 +482,7 @@ function handleClick (event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
     if (document.body.id === "home") {
         loadPlaylists();
     } else if (document.body.id === "featured") {
@@ -372,16 +516,30 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     addSongToForm.addEventListener("click", () => {
-        addAnotherSongInput();
+        addAnotherSongInput("#add-form-modal", "#song-form-input");
     })
 
     deleteButton.addEventListener("click", () => {
         if (deleting) {
             deleting = false; 
-            deleteButton.className = "delete-container"
+            deleteButton.className = "delete-container";
         } else {
             deleting = true;
             deleteButton.className = "delete-container-active";
+            editing = false;
+            editButton.className = "edit-container";
+        }
+    })
+
+    editButton.addEventListener("click", () => {
+        if (editing) {
+            editing = false;
+            editButton.className = "edit-container";
+        } else {
+            editing = true;
+            deleting = false;
+            deleteButton.className = "delete-container";
+            editButton.className = "edit-container-active";
         }
     })
 
@@ -405,5 +563,10 @@ document.addEventListener("DOMContentLoaded", () => {
     submitPlaylistForm.addEventListener("click", (event) => {
         event.preventDefault();
         createPlaylistFromForm();
+    })
+
+    editForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        uploadChanges();
     })
 })

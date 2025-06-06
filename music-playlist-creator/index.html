@@ -37,8 +37,12 @@
             <i class="fa-solid fa-plus"></i>
         </div>
         <div class="delete-container">
-            <label>Delete:</label>
+            <label>Delete</label>
             <i class="fa-solid fa-trash"></i>
+        </div>
+        <div class="edit-container">
+            <label>Edit</label>
+            <i class="fa-solid fa-file-pen"></i>
         </div>
     </div>
     <main> 
@@ -57,7 +61,7 @@
         <form class="form-container">
             <span id="form-modal-close" class="close">&times;</span>
             <h1>Add Playlist Form</h1>
-            <div class="input-list">
+            <div id="add-form-modal" class="input-list">
                 <div id="playlist-name-input" class="form-input">
                     <label>Playlist Name</label>
                     <input required type="text" id="playlist-name">
@@ -68,7 +72,7 @@
                 </div>
                 <div id="song-form-input" class="form-input">
                     <div id="song-input-label">
-                        <label>Add Songs</label>
+                        <label style="margin-right: 5px;">Add Songs</label>
                         <i id="song-form-plus" class="fa-solid fa-plus"></i>
                     </div>
                     <div id="song_1" class="song-form-list">
@@ -95,6 +99,13 @@
         </form>
     </div>
 
+    <div style="display: none;" id="edit-modal" class="form-modal">
+        <form id="form-edit-playlist"class="form-container">
+            
+            <input id="edit-playlist-submit" type="submit" value="Submit">
+        </form>
+    </div>
+    
     <footer>
     </footer>
     <script src="script.js"></script>

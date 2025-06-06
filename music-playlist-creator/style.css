@@ -207,6 +207,44 @@ main {
     margin-right: 5px;
 }
 
+.edit-container {
+    padding: 10px 20px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+}
+
+.edit-container label {
+    margin-right: 8px;
+}
+
+.edit-container-active {
+    padding: 10px 20px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1772c1;
+    color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px 0px #f1ecec;
+    transition: transform 0.3s;
+    transform: scale(1.1);
+}
+
+.edit-container-active label {
+    margin-right: 8px;
+}
+
 .add-container {
     padding: 10px 20px;
     height: 30px;
@@ -317,12 +355,15 @@ main {
     padding: 0 5px;
 }
 
+#song-edit-input {
+    row-gap: 20px;
+}
+
 #song-input-label {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
 }
 
 .song-form-list {
@@ -333,6 +374,7 @@ main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     row-gap: 20px;
+    column-gap: 30px;
     margin-top: 10px;
 }
 
@@ -340,6 +382,7 @@ main {
     display: flex;
     row-gap: 20px;
     column-gap: 20px;
+    justify-content: space-between;
 }
 
 .song-form-group label {
@@ -354,6 +397,16 @@ main {
     background-color: #1772c1;
     border: none;
     border-radius: 5px;
+    color: whitesmoke;
+}
+
+#edit-playlist-submit {
+    background-color: #1772c1;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    margin-top: 20px;
     color: whitesmoke;
 }
 
