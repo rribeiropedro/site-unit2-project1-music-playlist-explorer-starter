@@ -339,9 +339,9 @@ function handleClick (event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname === "/music-playlist-creator/index.html") {
+    if (window.location.pathname === "./index.html") {
         loadPlaylists();
-    } else if (window.location.pathname === "/music-playlist-creator/featured.html") {
+    } else if (window.location.pathname === "./featured.html") {
         loadFeatured();
     }
 
