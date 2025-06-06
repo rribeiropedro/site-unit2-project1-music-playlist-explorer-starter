@@ -339,9 +339,9 @@ function handleClick (event) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.pathname === "./index.html") {
+    if (document.body.id === "home") {
         loadPlaylists();
-    } else if (window.location.pathname === "./featured.html") {
+    } else if (document.body.id === "featured") {
         loadFeatured();
     }
 
